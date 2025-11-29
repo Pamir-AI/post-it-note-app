@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>///POST-IT</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23e8e4a0' x='10' y='10' width='80' height='80' stroke='%231a2a2a' stroke-width='6'/><text y='65' x='50' text-anchor='middle' font-size='40'>+</text></svg>">
+</head>
+<body>
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button id="add-note" class="toolbar-btn" title="New Note [+]">+</button>
+    <div class="color-palette" id="color-palette">
+      <button class="color-swatch" data-color="#e8e4a0" style="background:#e8e4a0" title="Cream"></button>
+      <button class="color-swatch" data-color="#a0c8e8" style="background:#a0c8e8" title="Sky"></button>
+      <button class="color-swatch" data-color="#e8a0a0" style="background:#e8a0a0" title="Rose"></button>
+      <button class="color-swatch" data-color="#a0e8b0" style="background:#a0e8b0" title="Mint"></button>
+      <button class="color-swatch" data-color="#e8c8a0" style="background:#e8c8a0" title="Peach"></button>
+      <button class="color-swatch" data-color="#c8a0e8" style="background:#c8a0e8" title="Lilac"></button>
+    </div>
+    <div class="zoom-controls">
+      <button id="zoom-out" class="toolbar-btn" title="Zoom Out [-]">-</button>
+      <span id="zoom-level">100%</span>
+      <button id="zoom-in" class="toolbar-btn" title="Zoom In [+]">+</button>
+      <button id="zoom-reset" class="toolbar-btn" title="Reset View [R]">R</button>
+    </div>
+  </div>
+
+  <!-- Canvas viewport -->
+  <div class="viewport" id="viewport">
+    <div class="canvas" id="canvas">
+      <!-- Notes will be rendered here -->
+    </div>
+  </div>
+
+  <!-- Edit modal -->
+  <div class="modal" id="edit-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="modal-title">NEW_NOTE</span>
+        <button class="modal-close" id="modal-close">X</button>
+      </div>
+      <div id="note-content" class="editor-content" contenteditable="true" data-placeholder="Type your note here..."></div>
+      <div class="modal-footer">
+        <button id="delete-note" class="btn-danger">DELETE</button>
+        <button id="save-note" class="btn-primary">SAVE</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
