@@ -317,13 +317,21 @@ function getEditorContent() {
     const marker = document.createTextNode(`[IMG:${img.src}]`);
     img.replaceWith(marker);
   });
-  return clone.textContent || '';
+  // Convert <br> and block elements to newlines
+  clone.querySelectorAll('br').forEach(br => br.replaceWith('\n'));
+  clone.querySelectorAll('div, p').forEach(el => {
+    el.before('\n');
+    el.replaceWith(...el.childNodes);
+  });
+  return (clone.textContent || '').replace(/^\n/, ''); // trim leading newline
 }
 
 // Set content in contenteditable - convert [IMG:...] to actual images
 function setEditorContent(text) {
   // Escape HTML first
   let html = escapeHtml(text);
+  // Convert newlines to <br>
+  html = html.replace(/\n/g, '<br>');
   // Replace [IMG:...] with actual img elements
   html = html.replace(/\[IMG:(data:image\/[^\]]+)\]/g, (_, dataUrl) => {
     return `<img src="${dataUrl}" class="editor-preview-image" data-image-marker="true">`;
